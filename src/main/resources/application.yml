@@ -12,8 +12,8 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${EC2_HOST}:5432/app?serverTimezone=Asia/Seoul
-    username: spring
+    url: jdbc:postgresql://${EC2_HOST}:5432/kok?serverTimezone=Asia/Seoul
+    username: kok
     password: 1234
   session:
     redis:
@@ -57,6 +57,13 @@ aws:
   s3:
     bucket-name: ${AWS_S3_BUCKET}
   region: ${AWS_REGION}
+
+  # sms api key
+  sms:
+    api:
+      access: ${SMS_ACCESS}
+      secret: ${SMS_SECRET_KEY}
+
 
 
 
