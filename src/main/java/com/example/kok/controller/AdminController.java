@@ -81,9 +81,10 @@ public class AdminController {
         return "admin/company";
     }
 
-    //    회원관리 - 기업회원
+    //    회원관리 - 주의 회원과 게시물
     @GetMapping("warning")
     public String goToWarningPage(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        log.info("-----------------------------------------------------------------------------customUserDetails: {}", customUserDetails);
         model.addAttribute("admin", customUserDetails);
         return "admin/warning";
     }

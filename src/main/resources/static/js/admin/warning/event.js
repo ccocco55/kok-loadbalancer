@@ -48,8 +48,25 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-        const slangPostIds = await warningService.checkAllPosts();
-        console.log("욕설 포함 게시글 ID:", slangPostIds);
+    const page = 1;
+
+
+    const modal = document.querySelector(".member-modal.modal");
+
+    document.addEventListener("click", async (e) => {
+        // 상세 모달 열기 (이벤트 위임)
+        const target = e.target.closest(".action-btn, .mdi-chevron-right");
+        if (!target) {
+            return;
+        }
+
+        const id = target.dataset.id;
+        modal.style.display = "block";
+        setTimeout(() => {
+            modal.classList.add("show");
+            modal.style.background = "rgba(0,0,0,0.5)";
+            document.body.classList.add("modal-open");
+        }, 100);
     });
 
     document.addEventListener("click", async (e) => {
@@ -71,9 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ) {
                 parentLi.classList.add("active");
             }
-
-            await memberService.memberList(page, layout.showList);
-        }
+       }
     });
 
     // 닫기 버튼 / 푸터 닫기 버튼 / 배경 클릭 → 모두 위임 처리
