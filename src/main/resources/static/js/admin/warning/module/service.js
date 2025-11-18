@@ -26,18 +26,5 @@ const warningService = (() => {
         return result;
     }
 
-    const checkAllPosts = async () => {
-        const posts = await allPosts();
-
-        const featureList = posts.map(post => ({
-            id: post.id,
-            content: post.post_content
-        }));
-
-        const slangIds = await warningList(featureList);
-
-        return slangIds;
-    };
-
-    return {warningList:warningList, allPosts: allPosts, checkAllPosts:checkAllPosts}
+    return {warningList:warningList, allPosts: allPosts}
 })();
