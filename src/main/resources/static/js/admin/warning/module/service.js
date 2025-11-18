@@ -1,7 +1,7 @@
 const warningService = (() => {
     const warningList = async (feature = [] = "") => {
 
-        const response = await fetch("https://notebook-affairs-required-working.trycloudflare.com/api/slang-check", {
+        const response = await fetch("https://suspected-already-stocks-missed.trycloudflare.com/api/slang-check", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
