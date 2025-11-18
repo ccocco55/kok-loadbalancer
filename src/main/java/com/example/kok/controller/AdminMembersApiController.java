@@ -2,6 +2,7 @@ package com.example.kok.controller;
 
 import com.example.kok.dto.AdminMemberCriteriaDTO;
 import com.example.kok.dto.UserMemberDTO;
+import com.example.kok.service.CommunityPostService;
 import com.example.kok.service.MemberService;
 import com.example.kok.util.Criteria;
 import com.example.kok.util.Search;
@@ -21,6 +22,8 @@ import java.util.Optional;
 public class AdminMembersApiController implements AdminMembersApiControllerDocs {
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private CommunityPostService communityPostService;
 
     @GetMapping("list/{page}")
     public ResponseEntity<?> findUserMembers(@PathVariable("page") int page, @RequestParam(required = false) String keyword) {
@@ -40,4 +43,9 @@ public class AdminMembersApiController implements AdminMembersApiControllerDocs 
         return ResponseEntity.ok(userMemberDTO);
     }
 
+    @GetMapping("all-posts")
+    public ResponseEntity<?> findAllPosts() {
+        communityPostService.findAllPosts();
+        return ResponseEntity.ok(communityPostService.findAllPosts());
+    }
 }

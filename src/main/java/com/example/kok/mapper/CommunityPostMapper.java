@@ -14,6 +14,9 @@ public interface CommunityPostMapper {
 //    목록
     public List<PostDTO> selectCommunityPosts(Criteria criteria);
 
+//    전체 게시물
+    public List<PostDTO> selectAllPosts();
+
 //    전체 개수
     public int selectCommunityPostCount();
 

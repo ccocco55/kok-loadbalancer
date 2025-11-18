@@ -29,4 +29,7 @@ public interface CommunityPostService {
                 .memberId(postDTO.getMemberId())
                 .build();
     }
+
+//    전체 게시물 조회
+    public List<PostDTO> findAllPosts();
 }

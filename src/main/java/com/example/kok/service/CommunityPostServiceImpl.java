@@ -249,4 +249,9 @@ public class CommunityPostServiceImpl implements CommunityPostService {
         return today.format(formatter);
     }
 
+    @Override
+    public List<PostDTO> findAllPosts() {
+        return communityPostDAO.findAllPosts();
+    }
+
 }

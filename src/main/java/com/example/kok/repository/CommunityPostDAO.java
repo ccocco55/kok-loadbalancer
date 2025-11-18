@@ -19,6 +19,11 @@ public class CommunityPostDAO {
         return communityPostMapper.selectCommunityPosts(criteria);
     }
 
+//    전체 개시물
+    public List<PostDTO> findAllPosts(){
+        return communityPostMapper.selectAllPosts();
+    }
+
 //    전체 개수
     public int findCountAll() {
         return communityPostMapper.selectCommunityPostCount();

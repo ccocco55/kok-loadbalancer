@@ -3,7 +3,7 @@
 <mapper namespace="com.example.kok.mapper.CommunityPostMapper">
 <!-- 게시글 전체 목록 -->
     <select id="selectCommunityPosts">
-        select u.id as member_id, u.user_name, m.member_profile_url as snsProfile, f.file_path as memberProfileUrl, p.id as id, p.post_content, p.post_status, p.created_datetime, p.updated_datetime, ujc.job_category, jc.job_name, p.likes_count
+        select u.id as member_id, u.user_name, m.member_profile_url as snsProfile, f.file_path as memberProfileUrl, p.id as id, p.post_content, p.post_status, p.post_warning_status, p.created_datetime, p.updated_datetime, ujc.job_category, jc.job_name, p.likes_count
         from tbl_user u
         join tbl_member m on u.id = m.user_id
         join tbl_post p on m.user_id = p.member_id
@@ -11,12 +11,19 @@
         left join tbl_job_category jc on ujc.job_category = jc.id
         left join tbl_user_profile_file upf on u.id = upf.user_id
         left join tbl_file f on upf.file_id = f.id
-        where p.post_status = 'active'
+        where p.post_status = 'active' and p.post_warning_status IN ('wait', 'hold')
         order by created_datetime desc
         limit #{rowCount} offset #{offset}
     </select>
 
-<!-- 게시글 전체 갯수 -->
+<!-- 전체 게시물 -->
+    <select id="selectAllPosts">
+        select id, post_content
+        from tbl_post
+        where post_status = 'active' and post_warning_status IN ('wait', 'hold')
+    </select>
+
+    <!-- 게시글 전체 갯수 -->
     <select id="selectCommunityPostCount">
         select count(*)
         from tbl_member m
