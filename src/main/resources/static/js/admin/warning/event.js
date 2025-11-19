@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     ) {
                         parentLi.classList.add("active");
 
-                        await warningService.warningPostList(page, layout.showList, warnings.isSlang, keyword);
                     }
+                    await warningService.warningPostList(page, layout.showList, warnings.isSlang, keyword);
                 }
             });
 
