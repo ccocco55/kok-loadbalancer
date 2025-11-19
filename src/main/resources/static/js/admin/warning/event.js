@@ -59,6 +59,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 await warningService.warningPostList(page, layout.showList, warnings.isSlang, keyword);
             });
+
+            document.addEventListener("click", async (e) => {
+                const pageButton = e.target.closest(".page-item-num");
+                if (!pageButton) return;
+
+                e.preventDefault();
+                const page = pageButton.dataset.page;
+
+                if (page) {
+                    document.querySelectorAll(".page-number").forEach((li) => {
+                        li.classList.remove("active");
+                    });
+
+                    const parentLi = pageButton.closest(".page-number");
+                    if (
+                        parentLi &&
+                        !["이전", "다음"].includes(pageButton.textContent.trim())
+                    ) {
+                        parentLi.classList.add("active");
+
+                        await warningService.warningPostList(page, layout.showList, warnings.isSlang, keyword);
+                    }
+                }
+            });
+
         });
 
 
@@ -100,27 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-    document.addEventListener("click", async (e) => {
-        const pageButton = e.target.closest(".page-item-num");
-        if (!pageButton) return;
 
-        e.preventDefault();
-        const page = pageButton.dataset.page;
-
-        if (page) {
-            document.querySelectorAll(".page-number").forEach((li) => {
-                li.classList.remove("active");
-            });
-
-            const parentLi = pageButton.closest(".page-number");
-            if (
-                parentLi &&
-                !["이전", "다음"].includes(pageButton.textContent.trim())
-            ) {
-                parentLi.classList.add("active");
-            }
-       }
-    });
 
     // 닫기 버튼 / 푸터 닫기 버튼 / 배경 클릭 → 모두 위임 처리
     document.addEventListener("click", (e) => {
